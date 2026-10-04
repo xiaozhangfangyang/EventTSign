@@ -1,0 +1,49 @@
+name: hyper_tsign
+experiment_name: hyper_tsign
+output_dir: outputs
+seed: 42
+
+data:
+  root: datasets/eventtsign
+  image_size: 224
+  input_mode: event
+  input_channels: 3
+  workers: 4
+
+model:
+  name: hyper_tsign
+  backbone: convnextv2_nano
+  pretrained: true
+  pretrained_path: weights/convnextv2_nano_22k_224_ema.pt
+  input_channels: 3
+  num_classes: 58
+  drop_path_rate: 0.1
+  # CPM and geometry-guided hypergraph reasoning are always enabled.
+  segment_proximity_membership_temperature: 0.5
+  segment_orientation_membership_temperature: 0.5
+  segment_num_tokens: 16
+  segment_num_relation_hyperedges: 16
+  segment_token_dim: 64
+  segment_token_temperature: 0.7
+  segment_feat_dim: 64
+  segment_geom_dim: 11
+  segment_hg_hidden_dim: 128
+  segment_hg_num_layers: 1
+  segment_hg_fusion_scale_init: 0.05
+  segment_hg_distance_scale: 0.28
+  segment_hg_angle_scale: 25.0
+  segment_hg_scale_ratio: 3.0
+
+train:
+  device: cuda
+  epochs: 100
+  batch_size: 128
+  optimizer: adamw
+  lr: 5.0e-4
+  min_lr: 1.0e-6
+  weight_decay: 0.05
+  betas: [0.9, 0.999]
+  scheduler: cosine
+  warmup_epochs: 5
+  warmup_start_factor: 0.001
+  save_best: true
