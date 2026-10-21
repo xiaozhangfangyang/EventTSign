@@ -1,4 +1,12 @@
-# Hyper-TSign
+# EventTSign
+
+Code for **Extreme Illumination-Robust Traffic Sign Classification with Event Cameras**.
+
+## Results
+
+Test loss and accuracy curves, including overall accuracy and accuracy under low, normal, and high illumination.
+
+![Test performance curves](assets/test_results.png)
 
 ## Setup
 
@@ -41,3 +49,15 @@ python evaluate.py --checkpoint outputs/hyper_tsign/best.pt --data-root datasets
 ```
 
 To evaluate downloaded model weights, replace `--checkpoint` with the relative path to the downloaded file.
+
+## Citation
+
+If you use this project, please cite the manuscript ([BibTeX](CITATION.bib)):
+
+```bibtex
+@unpublished{zhang_extreme_illumination_event_cameras,
+  title  = {Extreme Illumination-Robust Traffic Sign Classification with Event Cameras},
+  author = {Zhang, Yongji and Li, Siqi and Chen, Wenbai and Xi, Haoning and Bao, Wei and Gao, Yue},
+  note   = {Under review}
+}
+```
